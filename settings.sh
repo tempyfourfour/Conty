@@ -13,10 +13,8 @@ PACKAGES=(
 	xorg-xwayland qt6-wayland wayland lib32-wayland qt5-wayland xorg-server-xephyr gamescope
 	# video
 	mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
-	vulkan-intel lib32-vulkan-intel
 	vulkan-icd-loader lib32-vulkan-icd-loader vulkan-mesa-layers
-	lib32-vulkan-mesa-layers libva-intel-driver lib32-libva-intel-driver
-	intel-media-driver mesa-utils vulkan-tools libva-utils lib32-mesa-utils
+	lib32-vulkan-mesa-layers mesa-utils vulkan-tools libva-utils lib32-mesa-utils
 	# wine
 	wine-staging winetricks-git wineasio
 	freetype2 lib32-freetype2 libxft lib32-libxft
@@ -41,17 +39,10 @@ PACKAGES=(
 	# development
 	base-devel git meson mingw-w64-gcc cmake
 	# gaming
-	lutris python-protobuf steam steamtinkerlaunch
-	minigalaxy prismlauncher bottles playonlinux obs-studio
-	retroarch retroarch-assets-ozone libretro-beetle-psx-hw
-	libretro-blastem libretro-bsnes libretro-dolphin duckstation-gpl
-	libretro-gambatte libretro-melonds libretro-mgba libretro-nestopia
-	libretro-parallel-n64 libretro-picodrive libretro-ppsspp
-	libretro-yabause pcsx2-git lsfg-vk-git protonplus umu-launcher
+	lutris python-protobuf lsfg-vk-git protonplus umu-launcher
 	# extra
-	nano ttf-dejavu ttf-liberation firefox mpv geany pcmanfm
-	htop qbittorrent speedcrunch gpicview file-roller openbox lxterminal
-	yt-dlp minizip nautilus genymotion jre17-openjdk gnome-themes-extra
+	nano ttf-dejavu ttf-liberation geany pcmanfm
+	htop lxterminal gnome-themes-extra
  	ffmpegthumbnailer tmux libisoburn doublecmd-qt6
 )
 
@@ -75,31 +66,8 @@ ALHP_FEATURE_LEVEL=2
 
 # Locales to configure in the image
 LOCALES=(
-	'ar_EG.UTF-8 UTF-8'
 	'en_US.UTF-8 UTF-8'
-	'en_GB.UTF-8 UTF-8'
-	'en_CA.UTF-8 UTF-8'
-	'en_SG.UTF-8 UTF-8'
-	'es_MX.UTF-8 UTF-8'
-	'zh_CN.UTF-8 UTF-8'
-	'fr_FR.UTF-8 UTF-8'
-	'ru_RU.UTF-8 UTF-8'
-	'ru_UA.UTF-8 UTF-8'
-	'es_ES.UTF-8 UTF-8'
-	'de_DE.UTF-8 UTF-8'
-	'pt_BR.UTF-8 UTF-8'
-	'it_IT.UTF-8 UTF-8'
-	'id_ID.UTF-8 UTF-8'
-	'ja_JP.UTF-8 UTF-8'
-	'bg_BG.UTF-8 UTF-8'
-	'pl_PL.UTF-8 UTF-8'
-	'da_DK.UTF-8 UTF-8'
-	'ko_KR.UTF-8 UTF-8'
-	'tr_TR.UTF-8 UTF-8'
-	'hu_HU.UTF-8 UTF-8'
-	'cs_CZ.UTF-8 UTF-8'
-	'bn_IN UTF-8'
-	'hi_IN UTF-8'
+	
 )
 
 # Content of pacman mirrorrlist file before reflector is installed and used to fetch new one
@@ -127,7 +95,7 @@ USE_SYS_UTILS=0
 # These are the algorithms supported by the integrated squashfuse
 # However, your squashfs-tools (mksquashfs) may not support some of them
 SQUASHFS_COMPRESSOR="zstd"
-SQUASHFS_COMPRESSOR_ARGUMENTS=(-b 1M -comp "${SQUASHFS_COMPRESSOR}" -Xcompression-level 19)
+SQUASHFS_COMPRESSOR_ARGUMENTS=(-b 1M -comp "${SQUASHFS_COMPRESSOR}" -Xcompression-level 5)
 
 # Uncomment these variables if your mksquashfs does not support zstd or
 # if you want faster compression/decompression (at the cost of compression ratio)
@@ -137,7 +105,7 @@ SQUASHFS_COMPRESSOR_ARGUMENTS=(-b 1M -comp "${SQUASHFS_COMPRESSOR}" -Xcompressio
 # Set to any value to Use DwarFS instead of SquashFS
 USE_DWARFS=
 DWARFS_COMPRESSOR_ARGUMENTS=(
-	-l7 -C zstd:level=19 --metadata-compression null
+	-l7 -C zstd:level=5 --metadata-compression null
 	-S 22 -B 1 --order nilsimsa
 	-W 12 -w 4 --no-history-timestamps --no-create-timestamp
 )
